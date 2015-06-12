@@ -57,7 +57,7 @@
     cell.imageView.image = image;
     
     cell.textLabel.text = self.dwarves[indexPath.row];
-    
+    cell.textLabel.font = [UIFont boldSystemFontOfSize:20];
     
     if (indexPath.row < 7) {
         cell.detailTextLabel.text = @"Mr. Disney";
@@ -66,6 +66,38 @@
     }
     
     return cell;
+}
+
+
+- (NSInteger)tableView:(UITableView *)tableView indentationLevelForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return indexPath.row;
+}
+
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row == 0) {
+        return nil;
+    } else {
+        return indexPath;
+    }
+}
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSString *rowValue = self.dwarves[indexPath.row];
+    NSString *message = [
+                         [NSString alloc] initWithFormat:@"You selected %@", rowValue
+                         ];
+    UIAlertView *alert = [
+                          [UIAlertView alloc]initWithTitle:@"Row Selected!"message:message
+                          delegate:nil
+                          cancelButtonTitle:@"Yes I Did"otherButtonTitles:nil];
+    [alert show];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 50;
 }
 
 @end
