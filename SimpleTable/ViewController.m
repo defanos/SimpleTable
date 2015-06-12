@@ -49,7 +49,7 @@
     if (cell == nil) {
         cell = [
                 [UITableViewCell alloc]
-                initWithStyle:UITableViewCellStyleSubtitle
+                initWithStyle:UITableViewCellStyleValue1
                 reuseIdentifier:SimpleTableIdentifier];
     }
     
